@@ -17,6 +17,8 @@ const labelMessageError = document.querySelector('.js-label-error');
 const input_search_desc = document.querySelector('.js_in_search_desc');
 
 
+
+
 //Objetos con cada gatito
 const kittenData_1 = {
     image: "https://dev.adalab.es/gato-siames.webp",
@@ -102,8 +104,15 @@ function addNewKitten(event) {
     }
     else if (valueDesc !== "" && valuePhoto !== "" && valueName !== "") {
         labelMessageError.innerHTML = "";
-    }
-}
+    
+    const newKittenDataObject = {
+        image: valuePhoto,
+        name: valueName,
+        desc: valueDesc,
+        race: inputRace.value,
+    };
+    kittenDataList.push(newKittenDataObject);
+}}
 //Cancelar la búsqueda de un gatito
 function cancelNewKitten(event) {
     event.preventDefault();
