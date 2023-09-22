@@ -112,6 +112,8 @@ function addNewKitten(event) {
         race: inputRace.value,
     };
     kittenDataList.push(newKittenDataObject);
+    labelMessageError.innerHTML = 'Mola! Un nuevo gatito en Adalab!';
+    renderKittenList(kittenDataList)
 }}
 //Cancelar la búsqueda de un gatito
 function cancelNewKitten(event) {
@@ -123,15 +125,26 @@ function cancelNewKitten(event) {
 }
 
 //Filtrar por descripción
-function filterKitten(event) {
-    event.preventDefault();
-    const descrSearchText = input_search_desc.value;
-    listElement.innerHTML = "";
-    for (const kittenItem of kittenDataList) {
-        if (kittenItem.desc.includes(descrSearchText)) {
-            listElement.innerHTML += renderKitten(kittenItem);
-        }
-    }
+// function filterKitten(event) {
+//     event.preventDefault();
+//     const descrSearchText = input_search_desc.value;
+//     listElement.innerHTML = "";
+//     for (const kittenItem of kittenDataList) {
+//         if (kittenItem.desc.includes(descrSearchText)) {
+//             listElement.innerHTML += renderKitten(kittenItem);
+//         }
+//     }
+// }
+
+function filterKitten(ev) {
+    ev.preventDefault();
+    const kittenListFiltered = kittenDataList
+    .filter((gatito) => gatito.desc.toLowerCase().includes(input_search_desc.value));
+    renderKittenList(kittenListFiltered);
+    // if (input_search_desc.value === "") {
+    //     listElement.innerHTML = renderKitten;
+    // } 
+    // Falta hacer que cuando se vacie el valor del input que pone la usuaria, aparezcan todos los gatos. 
 }
 
 //Mostrar el litado de gatitos en ell HTML
