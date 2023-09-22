@@ -144,7 +144,7 @@ function filterKitten(ev) {
     if (input_search_desc.value === "") {
         renderKittenList(kittenDataList);
     } 
-    // Falta hacer que cuando se vacie el valor del input que pone la usuaria, aparezcan todos los gatos. 
+    // He agregado la funcion renderKittenList(kittenDataList), que es la funcion encargada de mostrar a todos los gatitos en pantalla con los datos que tenmos en la variable kittenDataList. Le das al enter y entonces detecta que esta el valor del input vacio y aparecen todos los gatos.  
 }
 
 //Mostrar el litado de gatitos en ell HTML
