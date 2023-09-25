@@ -20,7 +20,7 @@ const input_search_desc = document.querySelector('.js_in_search_desc');
 
 
 //Objetos con cada gatito
-const kittenData_1 = {
+/*const kittenData_1 = {
     image: "https://dev.adalab.es/gato-siames.webp",
     name: "Anastacio",
     desc: "Porte elegante, su patrón de color tan característico y sus ojos de un azul intenso, pero su historia se remonta a Asía al menos hace 500 años, donde tuvo su origen muy posiblemente.",
@@ -39,7 +39,29 @@ const kittenData_3 = {
     race: "",
 };
 
-const kittenDataList = [kittenData_1, kittenData_2, kittenData_3];
+const kittenDataList = [kittenData_1, kittenData_2, kittenData_3];*/
+
+const GITHUB_USER = '<anddieguez>';
+const SERVER_URL = `https://dev.adalab.es/api/kittens/${GITHUB_USER}`;
+
+
+
+
+let kittenDataList = [];
+function getKitten(){
+
+
+fetch(SERVER_URL)
+.then((response)=>response.json())
+
+.then((data)=>{
+   kittenDataList = data.results;
+   renderKittenList(kittenDataList);
+});
+};
+
+//NO SE VEN LOS GATOS  
+
 
 //Funciones
 function renderKitten(kittenData) {

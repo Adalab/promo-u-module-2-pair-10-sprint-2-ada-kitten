@@ -9,7 +9,7 @@ Repetir este proceso por cada gatito */
 const kittenImageOne = "https://dev.adalab.es/gato-siames.webp";
 const kittenNameOne = "Anastacio";
 const kittenDescOne =
-  "Porte elegante, su patrón de color tan característico y sus ojos de un azul intenso, pero su historia se remonta a Asía al menos hace 500 años, donde tuvo su origen muy posiblemente.",
+  "Porte elegante, su patrón de color tan característico y sus ojos de un azul intenso, pero su historia se remonta a Asía al menos hace 500 años, donde tuvo su origen muy posiblemente."
 const kittenRaceOne = "Siamés"
 
 const kittenOne =
