@@ -16,7 +16,9 @@ const linkNewFormElememt = document.querySelector('.js-button-new-form');
 const labelMessageError = document.querySelector('.js-label-error');
 const input_search_desc = document.querySelector('.js_in_search_desc');
 const searchForm = document.querySelector('.js-search-form');
-
+const GITHUB_USER = '<anddieguez>';
+const SERVER_URL = `https://dev.adalab.es/api/kittens/${GITHUB_USER}`;
+let kittenDataList = [];
 
 
 
@@ -43,25 +45,22 @@ const kittenData_3 = {
 
 const kittenDataList = [kittenData_1, kittenData_2, kittenData_3];*/
 
-const GITHUB_USER = '<anddieguez>';
-const SERVER_URL = `https://dev.adalab.es/api/kittens/${GITHUB_USER}`;
 
+//PETICIÓN AL SERVIDOR DE LA LISTA DE LOS GATITOS
 
-let kittenDataList = [];
-function getKitten(){
+ 
+ function getKitten(){
 
 fetch(SERVER_URL)
 .then((response)=>response.json())
 .then((data)=>{
    kittenDataList = data.results;
    renderKittenList(kittenDataList);
+   localStorage.setItem('kittenList', JSON.stringify(kittenDataList));
 });
 };
 // Nos faltaba llamar a la funcion para que aparecieran los gatos!!!! Voy a llorar
-
-getKitten();
-
-//NO SE VEN LOS GATOS  
+//getKitten();
 
 
 //Funciones
@@ -99,6 +98,24 @@ function renderKittenList(kittenDataList) {
         listElement.innerHTML += renderKitten(kittenItem);
     }
 }
+
+
+//LOCAL STORAGE
+
+const kittenListStored = JSON.parse(localStorage.getItem('kittensList'));
+
+if (kittenListStored !== null) {
+    //si existe el listado de gatitos en el local storage
+    // vuelve a pintar el listado de gatitos
+    kittenDataList = kittenListStored;
+    renderKittenList();
+
+  } else {
+    //sino existe el listado de gatitos en el local storage
+    //haz la petición al servidor
+    getKitten();    
+  }
+
 
 //Mostrar/ocultar el formulario
 function showNewCatForm() {
