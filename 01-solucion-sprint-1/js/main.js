@@ -57,6 +57,9 @@ fetch(SERVER_URL)
    renderKittenList(kittenDataList);
 });
 };
+// Nos faltaba llamar a la funcion para que aparecieran los gatos!!!! Voy a llorar
+
+getKitten();
 
 //NO SE VEN LOS GATOS  
 
@@ -165,12 +168,12 @@ function filterKitten(ev) {
 
 // Funcion para que al borrar el input, aparezcan todos los gatos de nuevo.
 
-//   function defaultForm(ev) {
-//     const emptyInput = ev.currentTarget;
-//     if (emptyInput.value === "") {
-//         renderKittenList(kittenDataList);
-//     } 
-//   }
+  function defaultForm(ev) {
+    const emptyInput = ev.currentTarget;
+    if (emptyInput.value === "") {
+        renderKittenList(kittenDataList);
+    } 
+  }
 
 
 //Mostrar el litado de gatitos en ell HTML
