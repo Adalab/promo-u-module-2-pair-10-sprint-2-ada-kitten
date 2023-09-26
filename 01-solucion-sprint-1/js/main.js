@@ -15,6 +15,8 @@ const inputRace = document.querySelector('.js-input-race');
 const linkNewFormElememt = document.querySelector('.js-button-new-form');
 const labelMessageError = document.querySelector('.js-label-error');
 const input_search_desc = document.querySelector('.js_in_search_desc');
+const searchForm = document.querySelector('.js-search-form');
+
 
 
 
@@ -45,15 +47,11 @@ const GITHUB_USER = '<anddieguez>';
 const SERVER_URL = `https://dev.adalab.es/api/kittens/${GITHUB_USER}`;
 
 
-
-
 let kittenDataList = [];
 function getKitten(){
 
-
 fetch(SERVER_URL)
 .then((response)=>response.json())
-
 .then((data)=>{
    kittenDataList = data.results;
    renderKittenList(kittenDataList);
@@ -163,11 +161,17 @@ function filterKitten(ev) {
     const kittenListFiltered = kittenDataList
     .filter((gatito) => gatito.desc.toLowerCase().includes(input_search_desc.value));
     renderKittenList(kittenListFiltered);
-    if (input_search_desc.value === "") {
-        renderKittenList(kittenDataList);
-    } 
-    // He agregado la funcion renderKittenList(kittenDataList), que es la funcion encargada de mostrar a todos los gatitos en pantalla con los datos que tenmos en la variable kittenDataList. Le das al enter y entonces detecta que esta el valor del input vacio y aparecen todos los gatos.  
 }
+
+// Funcion para que al borrar el input, aparezcan todos los gatos de nuevo.
+
+//   function defaultForm(ev) {
+//     const emptyInput = ev.currentTarget;
+//     if (emptyInput.value === "") {
+//         renderKittenList(kittenDataList);
+//     } 
+//   }
+
 
 //Mostrar el litado de gatitos en ell HTML
 renderKittenList(kittenDataList);
@@ -177,6 +181,7 @@ linkNewFormElememt.addEventListener("click", handleClickNewCatForm);
 searchButton.addEventListener("click", filterKitten);
 buttonAdd.addEventListener("click", addNewKitten);
 buttonCancelForm.addEventListener("click", cancelNewKitten);
+searchForm.addEventListener('input', defaultForm);
 
 
 
