@@ -16,7 +16,7 @@ const linkNewFormElememt = document.querySelector('.js-button-new-form');
 const labelMessageError = document.querySelector('.js-label-error');
 const input_search_desc = document.querySelector('.js_in_search_desc');
 const searchForm = document.querySelector('.js-search-form');
-const GITHUB_USER = '<anddieguez>';
+const GITHUB_USER = 'mireiamc';
 const SERVER_URL = `https://dev.adalab.es/api/kittens/${GITHUB_USER}`;
 let kittenDataList = [];
 
@@ -60,44 +60,83 @@ fetch(SERVER_URL)
 });
 };
 // Nos faltaba llamar a la funcion para que aparecieran los gatos!!!! Voy a llorar
-//getKitten();
+// getKitten();
 
 
 //Funciones
-function renderKitten(kittenData) {
+// function renderKitten(kittenData) {
 
 
-    let html = '';
-    if (kittenData.race === "") {
-        html = `Uy que despiste, no sabemos su raza`;
-      } else {
-        html = kittenData.race;
-      }
+//     let html = '';
+//     if (kittenData.race === "") {
+//         html = `Uy que despiste, no sabemos su raza`;
+//       } else {
+//         html = kittenData.race;
+//       }
 
 
-    const kitten = `<li class="card">
-    <article>
-      <img
-        class="card_img"
-        src=${kittenData.image}
-        alt="gatito"
-      />
-      <h3 class="card_title">${kittenData.name}</h3>
-      <h3 class="card_race">${html}</h3>
-      <p class="card_description">
-      ${kittenData.desc}
-      </p>
-    </article>
-    </li>`;
-    return kitten;
-}
+//     const kitten = `<li class="card">
+//     <article>
+//       <img
+//         class="card_img"
+//         src=${kittenData.image}
+//         alt="gatito"
+//       />
+//       <h3 class="card_title">${kittenData.name}</h3>
+//       <h3 class="card_race">${html}</h3>
+//       <p class="card_description">
+//       ${kittenData.desc}
+//       </p>
+//     </article>
+//     </li>`;
+//     return kitten;
+// }
 
-function renderKittenList(kittenDataList) {
-    listElement.innerHTML = "";
-    for (const kittenItem of kittenDataList) {
-        listElement.innerHTML += renderKitten(kittenItem);
+function renderKittenList(kittenData) {
+    for (const item of kittenData) {
+    const liElement = document.createElement('li');
+    liElement.classList.add('list');
+    listElement.appendChild(liElement);
+
+    const articleElement = document.createElement('article');
+    liElement.appendChild(articleElement);
+
+    const imgElement = document.createElement('img');
+    imgElement.setAttribute('src', item.image);
+    imgElement.setAttribute('alt', 'gatito');
+    imgElement.setAttribute('class', card_img);
+    articleElement.appendChild(imgElement);
+
+    const h3Title = document.createElement('h3');
+    h3Title.setAttribute('class', card_title);
+    const textTitleH3 = document.createTextNode(item.name);
+    h3Title.appendChild(textTitleH3);
+    articleElement.appendChild(h3Title);
+
+    const h3Race = document.createElement('h3');
+    h3Race.setAttribute('class', card_race);
+    const textRaceH3 = document.createTextNode(item.race);
+    h3Race.appendChild(textRaceH3);
+    articleElement.appendChild(h3Race);
+
+    const pElement = document.createElement('p');
+    pElement.setAttribute('class', card_description);
+    const textPElement = document.createTextNode(item.desc);
+    articleElement.appendChild(pElement);
+    pElement.appendChild(textPElement);
     }
-}
+
+    //....
+    //Completa el código
+  }
+
+
+// function renderKittenList(kittenDataList) {
+//     listElement.innerHTML = "";
+//     for (const kittenItem of kittenDataList) {
+//         listElement.innerHTML += renderKitten(kittenItem);
+//     }
+// }
 
 
 //LOCAL STORAGE
@@ -186,7 +225,7 @@ function filterKitten(ev) {
 // Funcion para que al borrar el input, aparezcan todos los gatos de nuevo.
 
   function defaultForm(ev) {
-    const emptyInput = ev.currentTarget;
+    const emptyInput = ev.target;
     if (emptyInput.value === "") {
         renderKittenList(kittenDataList);
     } 
